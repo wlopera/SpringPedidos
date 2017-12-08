@@ -1,13 +1,18 @@
 package es.ua.jtech.spring.negocio;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import es.ua.jtech.spring.PedidosException;
+import es.ua.jtech.spring.datos.IPedidosDAO;
 
 @Service
 public class PedidosBOSimple implements IPedidosBO {
 
 	private static int cantidadMaxima = 50;
+	
+	@Autowired
+	public IPedidosDAO pdao;
 
 	public PedidosBOSimple() {
 		System.out.println("##=> Creando Objeto PedidosBOSimple - cantidadMaxima: " + cantidadMaxima);
@@ -19,6 +24,7 @@ public class PedidosBOSimple implements IPedidosBO {
 			throw new PedidosException("Cantidad pedida supera la cantidad máxima");
 		} else {
 			System.out.println("Pedido realizado");
+			pdao.insertarPedido(idCliente, idProducto, unidades);
 		}
 	}
 

@@ -14,5 +14,8 @@
 	<context:component-scan base-package="es.ua.jtech.spring"></context:component-scan>
 	
 	<bean id="pedidosBOSimple" class="es.ua.jtech.spring.negocio.PedidosBOSimple"></bean>
+	
+	<jee:jndi-lookup id="miDataSource" jndi-name="jdbc/pedidosDS"  resource-ref="true"/>
+	
 
 </beans>
